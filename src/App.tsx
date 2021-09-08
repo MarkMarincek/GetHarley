@@ -1,12 +1,15 @@
 import React from 'react';
 import GlobalStyle from 'styles/global';
 import Routes from 'routes/Routes';
+import AppContainer from 'components/AppContainer';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Routes />
+      <AppContainer>
+        <GlobalStyle />
+        <Routes />
+      </AppContainer>
     </>
   );
 }
