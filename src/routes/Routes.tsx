@@ -1,7 +1,7 @@
+import React from 'react';
 import TagPosts from 'pages/TagPosts';
 import UserPosts from 'pages/UserPosts';
 import Users from 'pages/Users';
-import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from './constants';
 
