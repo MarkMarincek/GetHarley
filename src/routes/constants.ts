@@ -1,5 +1,6 @@
 export const ROUTES = {
   USERS: '/users',
-  USER_POSTS: '/user_posts/:userId',
-  TAG_POSTS: '/tag_posts/:tagId',
+  USER_PROFILE: '/user/profile/:userId',
+  USER_POSTS: '/user/posts/:userId',
+  TAG_POSTS: '/tags/posts/:tagId',
 };
