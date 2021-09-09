@@ -6,7 +6,8 @@ const StyledContainer = styled(Container)`
   &.MuiContainer-root {
     display: flex;
   }
-  height: 92vh;
+  min-height: 92vh;
+  margin-bottom: 2vh;
   margin-top: 6vh;
 `;
 
