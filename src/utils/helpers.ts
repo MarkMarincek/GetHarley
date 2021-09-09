@@ -19,3 +19,23 @@ export function buildRequestParams(params: {}) {
   });
   return str;
 }
+
+export function capitalizeFirstLetter(str: string) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function fillArgumentsForPath(route: string, args: string | string[]) {
+  if (!route) return '';
+  const argsArray = Array.isArray(args) ? args : [args];
+
+  let argsCounter = 0;
+
+  return route
+    .split('/')
+    .map((slice) => {
+      if (slice.charAt(0) !== ':') return slice;
+      return argsArray[argsCounter++];
+    })
+    .join('/');
+}
