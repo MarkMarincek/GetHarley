@@ -4,15 +4,8 @@ export interface PaginationConfig {
   page: number;
   limit?: number;
 }
-
-export interface ApiResponse<T> {
-  data: T;
-  status: number;
-  statusText: string;
-}
-
 export interface ApiList<T> {
-  data: T[];
+  data: Array<T>;
   total: number;
   page: number;
   limit: number;

@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import { ApiResponse } from 'models/interfaces';
 import { API_TOKEN, API_URL } from 'utils/environment';
 
 class HttpService {
@@ -9,7 +8,7 @@ class HttpService {
   }
 
   get<T>(path: string) {
-    return this.service.request<ApiResponse<T>>({
+    return this.service.request<T>({
       method: 'GET',
       url: path,
       responseType: 'json',
@@ -17,7 +16,7 @@ class HttpService {
   }
 
   put<T>(path: string, payload: unknown) {
-    return this.service.request<ApiResponse<T>>({
+    return this.service.request<T>({
       method: 'PUT',
       url: path,
       responseType: 'json',
@@ -26,7 +25,7 @@ class HttpService {
   }
 
   patch<T>(path: string, payload: unknown) {
-    return this.service.request<ApiResponse<T>>({
+    return this.service.request<T>({
       method: 'PATCH',
       url: path,
       responseType: 'json',
@@ -35,7 +34,7 @@ class HttpService {
   }
 
   post<T>(path: string, payload: unknown) {
-    return this.service.request<ApiResponse<T>>({
+    return this.service.request<T>({
       method: 'POST',
       url: path,
       responseType: 'json',
@@ -44,7 +43,7 @@ class HttpService {
   }
 
   delete<T>(path: string) {
-    return this.service.request<ApiResponse<T>>({
+    return this.service.request<T>({
       method: 'DELETE',
       url: path,
       responseType: 'json',
