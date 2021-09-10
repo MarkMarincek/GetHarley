@@ -1,4 +1,3 @@
-import { Pagination } from '@material-ui/lab';
 import styled from 'styled-components/macro';
 
 const StyledPaginationContainer = styled.div`

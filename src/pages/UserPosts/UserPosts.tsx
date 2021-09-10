@@ -1,24 +1,24 @@
+import React, { useEffect } from 'react';
 import GridWrapper from 'components/GridWrapper';
 import LoadingIndicator from 'components/LoadingIndicator';
 import PostCard from 'components/PostCard';
 import useApiHook from 'hooks/useApi.hook';
 import usePagination from 'hooks/usePagination.hook';
-import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { getUser, getUserPosts } from 'utils/api';
-import { capitalizeFirstLetter, getFullName } from 'utils/helpers';
+import { getFullName } from 'utils/helpers';
 import { UserPostsTitleContainer } from './UserPosts.style';
 
 export default function UserPosts() {
   const { userId } = useParams<{ userId: string }>();
   const [userPostsState, requestUserPosts] = useApiHook(getUserPosts);
   const [userState, requestUser] = useApiHook(getUser);
-  const [page, pageCount, setPage] = usePagination(userPostsState.response?.data);
+  const [page] = usePagination(userPostsState.response?.data);
 
   useEffect(() => {
     requestUser(userId);
     requestUserPosts(userId, { page: page - 1 });
-  }, [userId]);
+  }, [userId, page, requestUser, requestUserPosts]);
 
   const isLoading = userState.loading || userPostsState.loading;
   const user = userState.response?.data;
