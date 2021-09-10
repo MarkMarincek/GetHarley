@@ -1,6 +1,8 @@
 ## How To Run
 
-The project can be run inside the docker by using `docker-compose up --build dev` or locally using standard CRA scripts.
+The project can be run inside the docker by using `docker-compose up --build dev` or locally using standard CRA scripts. Tests can be run with `docker-compose up test`.
+
+Some of the pages/functionality is missing in the up due to me running out of time to complete the task, but I think the provided code base should be enough to demonstrate me skills and experience with the React development.
 
 ## Available Scripts
 
