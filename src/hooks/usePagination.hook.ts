@@ -19,8 +19,6 @@ export default function usePagination<T>(apiListData?: ApiList<T>) {
     const spString = sp.toString();
     const args = !!spString ? `?${sp}` : '';
 
-    console.log(spString, args);
-
     history.push(`${history.location.pathname}${args}`);
     setCurrentPage(page);
   }

@@ -5,23 +5,28 @@ import useApiHook from 'hooks/useApi.hook';
 import { getUsers } from 'utils/api';
 import StyledPagination from 'components/StyledPagination';
 import usePagination from 'hooks/usePagination.hook';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 export default function Users() {
   const [usersState, requestUsers] = useApiHook(getUsers);
   const [page, pageCount, setPage] = usePagination(usersState.response?.data);
 
   useEffect(() => {
-    requestUsers({ page });
+    requestUsers({ page: page - 1 });
   }, [page, requestUsers]);
 
   return (
     <>
       <h1>Users list</h1>
-      <GridWrapper>
-        {usersState.response?.data.data.map((user) => (
-          <UserCard user={user} key={user.id} />
-        ))}
-      </GridWrapper>
+      {usersState.loading ? (
+        <LoadingIndicator />
+      ) : (
+        <GridWrapper>
+          {usersState.response?.data.data.map((user) => (
+            <UserCard user={user} key={user.id} />
+          ))}
+        </GridWrapper>
+      )}
       <StyledPagination
         count={pageCount}
         page={page}
