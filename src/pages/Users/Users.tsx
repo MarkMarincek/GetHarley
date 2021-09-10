@@ -3,39 +3,31 @@ import GridWrapper from 'components/GridWrapper';
 import UserCard from 'components/UserCard';
 import useApiHook from 'hooks/useApi.hook';
 import { getUsers } from 'utils/api';
-import Pagination from '@material-ui/lab/Pagination';
-import { useHistory, useLocation } from 'react-router';
 import StyledPagination from 'components/StyledPagination';
+import usePagination from 'hooks/usePagination.hook';
 
 export default function Users() {
-  const location = useLocation();
-  const history = useHistory();
-
-  const [data, requestUsers] = useApiHook(() => getUsers());
+  const [usersState, requestUsers] = useApiHook(getUsers);
+  const [page, pageCount, setPage] = usePagination(usersState.response?.data);
 
   useEffect(() => {
-    requestUsers();
-  }, []);
-
-  useEffect(() => {
-    const sp = new URLSearchParams(location.search);
-    console.log(sp.has('page'), sp.get('page'), sp.values());
-    console.log(location.search);
-  }, [location.search]);
+    requestUsers({ page });
+  }, [page, requestUsers]);
 
   return (
     <>
       <h1>Users list</h1>
       <GridWrapper>
-        {data.response?.data.data.map((user) => (
+        {usersState.response?.data.data.map((user) => (
           <UserCard user={user} key={user.id} />
         ))}
       </GridWrapper>
       <StyledPagination
-        count={10}
+        count={pageCount}
+        page={page}
         variant="outlined"
         color="primary"
-        onChange={() => history.push('/users?page=2')}
+        onChange={(p, value) => setPage(value)}
       />
     </>
   );
