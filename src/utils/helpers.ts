@@ -1,3 +1,5 @@
+import { UserPreview } from 'models/interfaces';
+
 export const camelCaseToSnakeCase = (str: string) => {
   if (typeof str !== 'string') {
     return null;
@@ -38,4 +40,8 @@ export function fillArgumentsForPath(route: string, args: string | string[]) {
       return argsArray[argsCounter++];
     })
     .join('/');
+}
+
+export function getFullName(user: UserPreview) {
+  return `${capitalizeFirstLetter(user.title)} ${user.firstName} ${user.lastName}`;
 }
