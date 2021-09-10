@@ -36,3 +36,13 @@ export interface Location {
   country: string;
   timezone: string; // Valid timezone value ex. +7:00, -1:00
 }
+
+export interface PostPreview {
+  id: string;
+  text: string;
+  image: string;
+  likes: number;
+  tags: string[];
+  publishDate: string;
+  owner: UserPreview;
+}

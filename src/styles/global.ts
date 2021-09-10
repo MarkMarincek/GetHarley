@@ -26,4 +26,14 @@ export default createGlobalStyle`
     font-weight: bold;
     margin: 48px;
   }
+
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 500;
+  }
 `;

@@ -27,13 +27,15 @@ export default function Users() {
           ))}
         </GridWrapper>
       )}
-      <StyledPagination
-        count={pageCount}
-        page={page}
-        variant="outlined"
-        color="primary"
-        onChange={(p, value) => setPage(value)}
-      />
+      {pageCount > 1 && (
+        <StyledPagination
+          count={pageCount}
+          page={page}
+          variant="outlined"
+          color="primary"
+          onChange={(p, value) => setPage(value)}
+        />
+      )}
     </>
   );
 }
