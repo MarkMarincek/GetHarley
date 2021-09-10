@@ -19,7 +19,7 @@ export default function UserCard(props: UserCardProps) {
   return (
     <StyledCard>
       <UserCardContainer>
-        <UserCardImg src={picture} />
+        <UserCardImg src={picture} alt={picture} />
         <UserCardContentSection>
           <h3>
             {capitalizeFirstLetter(title)}. {firstName} {lastName}
