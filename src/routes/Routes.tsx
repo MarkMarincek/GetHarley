@@ -10,13 +10,11 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route>
-          <Route path={ROUTES.USERS} exact component={Users} />
-          <Route path={ROUTES.USER_PROFILE} exact component={UserProfile} />
-          <Route path={ROUTES.USER_POSTS} exact component={UserPosts} />
-          <Route path={ROUTES.TAG_POSTS} exact component={TagPosts} />
-          <Redirect to={ROUTES.USERS} />
-        </Route>
+        <Route path={ROUTES.USERS} exact component={Users} />
+        <Route path={ROUTES.USER_PROFILE} exact component={UserProfile} />
+        <Route path={ROUTES.USER_POSTS} exact component={UserPosts} />
+        <Route path={ROUTES.TAG_POSTS} exact component={TagPosts} />
+        <Redirect to={ROUTES.USERS} />
       </Switch>
     </Router>
   );
