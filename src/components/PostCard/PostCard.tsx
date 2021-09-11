@@ -1,30 +1,65 @@
 import StyledCard from 'components/StyledCard';
-import { DATE_FORMAT } from 'config';
-import { format } from 'date-fns';
+import Tag from 'components/Tag';
 import { PostPreview } from 'models/interfaces';
-import React, { useMemo } from 'react';
-import { getFullName } from 'utils/helpers';
-import { PostCardContainer, PostUserSection } from './PostCard.style';
-
+import React, { useEffect } from 'react';
+import {
+  PostCardContainer,
+  PostCommentSection,
+  PostContentSection,
+  PostImageWrapper,
+  PostLikesContainer,
+  PostRightSideSection,
+} from './PostCard.style';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import UserInfo from 'components/UserInfo';
+import useApiHook from 'hooks/useApi.hook';
+import { getComments } from 'utils/api';
+import LoadingIndicator from 'components/LoadingIndicator';
+import PostComment from 'components/PostComment';
 interface PostCardProps {
   post: PostPreview;
 }
 export default function PostCard({ post }: PostCardProps) {
-  const userFullName = getFullName(post.owner);
-  const timeOfPost = useMemo(() => {
-    return format(new Date(post.publishDate), DATE_FORMAT);
-  }, [post.publishDate]);
+  const [commentsState, requestComments] = useApiHook(getComments);
+
+  useEffect(() => {
+    requestComments(post.id);
+  }, [post.id, requestComments]);
+
+  function renderComments() {
+    if (commentsState.loading) return <LoadingIndicator />;
+    if (commentsState.error) return <p className="warning__text">Something went wrong</p>;
+    if (!commentsState.response?.data.data.length)
+      return <p className="warning__text">No comments</p>;
+
+    return commentsState.response.data.data
+      .slice(0, 2)
+      .map((comment) => <PostComment comment={comment} key={comment.id} />);
+  }
 
   return (
     <StyledCard>
       <PostCardContainer>
-        <PostUserSection>
-          <img src={post.owner.picture} alt="User profile" />
-          <div>
-            <p>{userFullName}</p>
-            <p>{timeOfPost}</p>
-          </div>
-        </PostUserSection>
+        <UserInfo user={post.owner} publishDate={post.publishDate} />
+        <PostContentSection>
+          <PostImageWrapper>
+            <img className="backdrop" src={post.image} alt="Post backdrop" />
+            <img src={post.image} alt="Post" />
+          </PostImageWrapper>
+          <PostRightSideSection>
+            <p>{post.text}</p>
+            <div>
+              {post.tags.map((tag) => (
+                <Tag key={tag} tag={tag} />
+              ))}
+            </div>
+            <PostLikesContainer>
+              <ThumbUpIcon />
+              <p>{post.likes}</p>
+            </PostLikesContainer>
+          </PostRightSideSection>
+        </PostContentSection>
+        <PostCommentSection>{renderComments()}</PostCommentSection>
       </PostCardContainer>
     </StyledCard>
   );

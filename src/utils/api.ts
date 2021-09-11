@@ -1,5 +1,12 @@
 import { DEFAULT_PAGINATION_LIMIT } from 'config';
-import { ApiList, PaginationConfig, PostPreview, UserFull, UserPreview } from 'models/interfaces';
+import {
+  ApiList,
+  Comment,
+  PaginationConfig,
+  PostPreview,
+  UserFull,
+  UserPreview,
+} from 'models/interfaces';
 import httpService from 'services/http.service';
 import { buildRequestParams } from './helpers';
 
@@ -21,4 +28,8 @@ export function getUserPosts(userId: string, config?: PaginationConfig) {
 
 export function getUser(userId: string) {
   return httpService.get<UserFull>(`user/${userId}`);
+}
+
+export function getComments(postId: string) {
+  return httpService.get<ApiList<Comment>>(`post/${postId}/comment?limit=1`);
 }

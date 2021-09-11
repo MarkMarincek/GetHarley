@@ -43,5 +43,5 @@ export function fillArgumentsForPath(route: string, args: string | string[]) {
 }
 
 export function getFullName(user: UserPreview) {
-  return `${capitalizeFirstLetter(user.title)} ${user.firstName} ${user.lastName}`;
+  return `${capitalizeFirstLetter(user.title)}. ${user.firstName} ${user.lastName}`;
 }

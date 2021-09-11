@@ -46,3 +46,11 @@ export interface PostPreview {
   publishDate: string;
   owner: UserPreview;
 }
+
+export interface Comment {
+  id: string;
+  message: string;
+  owner: UserPreview;
+  post: string; // postId
+  publishDate: string;
+}
