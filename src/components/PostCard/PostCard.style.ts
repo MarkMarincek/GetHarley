@@ -91,7 +91,6 @@ const PostCommentSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 200px;
   padding: 8px;
 
   > *:not(:first-child) {

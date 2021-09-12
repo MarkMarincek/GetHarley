@@ -33,7 +33,7 @@ export default function Users() {
           page={page}
           variant="outlined"
           color="primary"
-          onChange={(p, value) => setPage(value)}
+          onChange={(_, value) => setPage(value)}
         />
       )}
     </>

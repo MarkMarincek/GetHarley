@@ -8,12 +8,13 @@ import { useParams } from 'react-router';
 import { getUser, getUserPosts } from 'utils/api';
 import { getFullName } from 'utils/helpers';
 import { UserPostsTitleContainer } from './UserPosts.style';
+import StyledPagination from 'components/StyledPagination';
 
 export default function UserPosts() {
   const { userId } = useParams<{ userId: string }>();
   const [userPostsState, requestUserPosts] = useApiHook(getUserPosts);
   const [userState, requestUser] = useApiHook(getUser);
-  const [page] = usePagination(userPostsState.response?.data);
+  const [page, pageCount, setPage] = usePagination(userPostsState.response?.data);
 
   useEffect(() => {
     requestUser(userId);
@@ -38,6 +39,15 @@ export default function UserPosts() {
           <PostCard post={post} key={post.id} />
         ))}
       </GridWrapper>
+      {pageCount > 1 && (
+        <StyledPagination
+          count={pageCount}
+          page={page}
+          variant="outlined"
+          color="primary"
+          onChange={(_, value) => setPage(value)}
+        />
+      )}
     </>
   );
 }
