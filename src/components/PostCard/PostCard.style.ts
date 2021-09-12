@@ -90,21 +90,19 @@ const PostLikesContainer = styled.div`
 const PostCommentSection = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   padding: 8px;
+  min-height: 58px;
 
   > *:not(:first-child) {
     margin-top: 16px;
   }
 
   .warning__text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
     font-style: italic;
     color: grey;
+    text-align: center;
   }
 `;
 
