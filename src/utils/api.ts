@@ -33,3 +33,10 @@ export function getUser(userId: string) {
 export function getComments(postId: string) {
   return httpService.get<ApiList<Comment>>(`post/${postId}/comment?limit=1`);
 }
+export function getTagPosts(tag: string, config?: PaginationConfig) {
+  const { page, limit = DEFAULT_PAGINATION_LIMIT } = config ?? {};
+
+  const requestParams = buildRequestParams({ page, limit });
+
+  return httpService.get<ApiList<PostPreview>>(`tag/${tag}/post/${requestParams}`);
+}

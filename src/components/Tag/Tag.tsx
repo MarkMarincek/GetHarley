@@ -5,8 +5,13 @@ import { TagContainer } from './Tag.style';
 
 interface TagPosts {
   tag: string;
+  large?: boolean;
 }
-export default function Tag({ tag }: TagPosts) {
+export default function Tag({ tag, large }: TagPosts) {
   const tagLink = useMemo(() => fillArgumentsForPath(ROUTES.TAG_POSTS, tag), [tag]);
-  return <TagContainer to={tagLink}>{tag}</TagContainer>;
+  return (
+    <TagContainer $large={large} to={tagLink}>
+      {tag}
+    </TagContainer>
+  );
 }

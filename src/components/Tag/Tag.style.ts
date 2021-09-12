@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
-const TagContainer = styled(Link)`
+interface TagContainerProps {
+  $large?: boolean;
+}
+const TagContainer = styled(Link)<TagContainerProps>`
   text-decoration: none;
   color: white;
   background-color: coral;
-  padding: 4px;
+  padding: ${(p) => (p.$large ? '8px' : '4px')};
   border-radius: 4px;
+  font-size: ${(p) => (p.$large ? '24px' : 'inherit')};
 `;
 
 export { TagContainer };
