@@ -11,6 +11,7 @@ const UserInfoContainer = styled.div`
     border-radius: 50%;
     margin-right: 16px;
     object-fit: cover;
+    cursor: pointer;
   }
 
   &.title__date__wrapper {
