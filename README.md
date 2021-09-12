@@ -1,5 +1,7 @@
 ## How To Run
 
+Add dummyapi.io account id to the .env file or create a new .env.local file, copy over the content from the .env and then replace the token placeholder with an actual id.
+
 The project can be run inside the docker by using `docker-compose up --build dev` or locally using standard CRA scripts. Tests can be run with `docker-compose up test`.
 
 Some of the pages/functionality is missing in the up due to me running out of time to complete the task, but I think the provided code base should be enough to demonstrate me skills and experience with the React development.
